@@ -1,13 +1,10 @@
 import sys
 import types
 
+from py_class_hacker import register_class_hook, register_module_hook
+
 __author__ = 'zhengxu'
 
-
-
-"""
-    TODO: Add multi-base class support
-"""
 
 
 class Target(object):
@@ -26,8 +23,6 @@ class Hacker(Target, Target2, object):
         :return:
         """
         base_classes = cls.__bases__
-        for base_class in base_classes:
-            print base_class
         base_class = cls.__base__
         for x in cls.__dict__:
             if not (x in base_class.__dict__) or not (strategy == 'safe'):
@@ -70,6 +65,18 @@ def ut_test_hack():
             print k, v
 
 
+def ut_test_module_hack():
+    t = Target()
+    register_module_hook()
+    print t.add(1, 2)
+    print Target.class_add(1, 2)
+    print t.static_add(1, 2)
+    print t.num
+
 
 if __name__ == '__main__':
-    ut_test_hack()
+    # ut_test_hack()
+    ut_test_module_hack()
+    # register_class_hook()
+    # register_module_hook(['Hacker', 'Target2'])
+    # register_class_hook(Hacker)
