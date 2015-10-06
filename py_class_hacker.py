@@ -60,4 +60,6 @@ def register_module_hook(class_name_list=[], allow_recursive=False, **kwargs):
             print "[ERROR] Unable to register class hook"
             continue
 
-
+"""
+    TODO: Deregister hook
+"""
